@@ -18,6 +18,31 @@ function LOGI() {
     echo -e "${green}[INF] $* ${plain}"
 }
 
+confirm() {
+    if [[ $# > 1 ]]; then
+        echo && read -p "$1 [Default $2]: " temp
+        if [[ "${temp}" == "" ]]; then
+            temp=$2
+        fi
+    else
+        read -p "$1 [y/n]: " temp
+    fi
+    if [[ "${temp}" == "y" || "${temp}" == "Y" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+confirm_restart() {
+    confirm "Restart the panel, Attention: Restarting the panel will also restart xray" "y"
+    if [[ $? == 0 ]]; then
+        restart
+    else
+        show_menu
+    fi
+}
+
 install_acme() {
     # Check if acme.sh is already installed
     if command -v ~/.acme.sh/acme.sh &>/dev/null; then
