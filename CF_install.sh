@@ -95,8 +95,9 @@ ssl_cert_issue_CF() {
         LOGD "Your domain name is set to: ${CF_Domain}"
 
         # Set up Cloudflare API details
-        CF_GlobalKey=""
-        CF_AccountEmail=""
+        export CF_Key="${CF_GlobalKey}"
+        export CF_Email="${CF_AccountEmail}"
+        
         LOGD "Please set the API key:"
         read -p "Input your key here: " CF_GlobalKey
         LOGD "Your API key is: ${CF_GlobalKey}"
