@@ -6,6 +6,17 @@ blue='\033[0;34m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
+function LOGD() {
+    echo -e "${yellow}[DEG] $* ${plain}"
+}
+
+function LOGE() {
+    echo -e "${red}[ERR] $* ${plain}"
+}
+
+function LOGI() {
+    echo -e "${green}[INF] $* ${plain}"
+}
 
 install_acme() {
     # Check if acme.sh is already installed
